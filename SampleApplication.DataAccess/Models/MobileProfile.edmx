@@ -1,0 +1,688 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Equipment" EntityType="Model.Store.Equipment" store:Type="Tables" Schema="mp" />
+          <EntitySet Name="LookUp" EntityType="Model.Store.LookUp" store:Type="Tables" Schema="mp" />
+          <EntitySet Name="SampleTransportCondition" EntityType="Model.Store.SampleTransportCondition" store:Type="Tables" Schema="mp" />
+          <EntitySet Name="Test" EntityType="Model.Store.Test" store:Type="Tables" Schema="mp" />
+          <EntitySet Name="TestRequirement" EntityType="Model.Store.TestRequirement" store:Type="Tables" Schema="mp" />
+          <EntitySet Name="TestSample" EntityType="Model.Store.TestSample" store:Type="Tables" Schema="mp" />
+          <EntitySet Name="TestStep" EntityType="Model.Store.TestStep" store:Type="Tables" Schema="mp" />
+          <EntitySet Name="TestSynonyms" EntityType="Model.Store.TestSynonyms" store:Type="Tables" Schema="mp" />
+          <EntitySet Name="TestTutorialSteps" EntityType="Model.Store.TestTutorialSteps" store:Type="Tables" Schema="mp" />
+          <AssociationSet Name="FK_TestEquipment_Test" Association="Model.Store.FK_TestEquipment_Test">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="TestSample" EntitySet="TestSample" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestStep_Test" Association="Model.Store.FK_TestStep_Test">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="TestStep" EntitySet="TestStep" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestTutorialSteps_Tests" Association="Model.Store.FK_TestTutorialSteps_Tests">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="TestTutorialSteps" EntitySet="TestTutorialSteps" />
+          </AssociationSet>
+          <AssociationSet Name="Test_TestRequirement_FK1" Association="Model.Store.Test_TestRequirement_FK1">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="TestRequirement" EntitySet="TestRequirement" />
+          </AssociationSet>
+          <AssociationSet Name="TestSample_SampleTransportCondition_FK1" Association="Model.Store.TestSample_SampleTransportCondition_FK1">
+            <End Role="TestSample" EntitySet="TestSample" />
+            <End Role="SampleTransportCondition" EntitySet="SampleTransportCondition" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="EquipmentID" />
+          </Key>
+          <Property Name="EquipmentID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DomainID" Type="int" Nullable="false" />
+          <Property Name="Descriptor" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="IsTestKit" Type="bit" />
+          <Property Name="Supplier" Type="varchar" MaxLength="10" />
+          <Property Name="SupplierCode" Type="varchar" MaxLength="30" />
+          <Property Name="EquipmentClass" Type="varchar" MaxLength="10" />
+          <Property Name="SmallImage" Type="varchar" MaxLength="500" />
+          <Property Name="MediumImage" Type="varchar" MaxLength="500" />
+          <Property Name="LargeImage" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedUserId" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="DeletedUserId" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="LookUp">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="TableName" />
+            <PropertyRef Name="FieldName" />
+            <PropertyRef Name="ValueCode" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="TableName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="FieldName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ValueCode" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="DisplayOrder" Type="tinyint" />
+          <Property Name="ValueDescription" Type="varchar" MaxLength="100" />
+          <Property Name="OwnerFieldName" Type="varchar" MaxLength="50" />
+          <Property Name="OwnerValue" Type="varchar" MaxLength="10" />
+          <Property Name="DefaultValue" Type="bit" />
+          <Property Name="SystemRequired" Type="bit" />
+          <Property Name="Aliased" Type="bit" />
+          <Property Name="ValueForAction" Type="varchar" MaxLength="255" />
+          <Property Name="RecordLastUpdated" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="SampleTransportCondition">
+          <Key>
+            <PropertyRef Name="ConditionId" />
+          </Key>
+          <Property Name="ConditionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SampleId" Type="int" Nullable="false" />
+          <Property Name="StandardCondition" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="SpecialCondition" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="TestID" />
+          </Key>
+          <Property Name="TestID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DomainID" Type="int" Nullable="false" />
+          <Property Name="TestCategoryID" Type="int" Nullable="false" />
+          <Property Name="TestCode" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="GuideVersion" Type="varchar" MaxLength="10" />
+          <Property Name="HelpText" Type="varchar" MaxLength="255" />
+          <Property Name="HelpImage" Type="varchar" MaxLength="500" />
+          <Property Name="EstimatedDuration" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="Laboratory" Type="varchar" MaxLength="10" />
+          <Property Name="ReferenceLaboratory" Type="varchar" MaxLength="10" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedUserId" Type="int" />
+          <Property Name="LastUpdate" Type="datetime" />
+          <Property Name="LastUpdateUser" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="DeletedUserId" Type="int" />
+        </EntityType>
+        <EntityType Name="TestRequirement">
+          <Key>
+            <PropertyRef Name="RequirementId" />
+          </Key>
+          <Property Name="RequirementId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TestID" Type="int" Nullable="false" />
+          <Property Name="RequirementType" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="StandardRequirement" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="RequirementDescription" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="TestSample">
+          <Key>
+            <PropertyRef Name="SampleId" />
+          </Key>
+          <Property Name="SampleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TestID" Type="int" Nullable="false" />
+          <Property Name="EquipmentID" Type="int" Nullable="false" />
+          <Property Name="SmaplesRequired" Type="int" Nullable="false" />
+          <Property Name="SampleClassRule" Type="varchar" MaxLength="10" />
+          <Property Name="Unit" Type="varchar" MaxLength="10" />
+          <Property Name="MinimumQuantity" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="IdealQuantity" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="MicroQuantity" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="SampleType" Type="varchar" MaxLength="10" />
+          <Property Name="AnalysisSampleType" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="TestStep">
+          <Key>
+            <PropertyRef Name="StepID" />
+          </Key>
+          <Property Name="StepID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TestID" Type="int" Nullable="false" />
+          <Property Name="CompetencyLevelID" Type="int" Nullable="false" />
+          <Property Name="StepName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="StepOrder" Type="int" Nullable="false" />
+          <Property Name="StepDescription" Type="varchar(max)" />
+          <Property Name="ImageUrl" Type="varchar" MaxLength="500" />
+          <Property Name="VideoUrl" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedUserId" Type="int" Nullable="false" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="DeletedUserId" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestSynonyms">
+          <Key>
+            <PropertyRef Name="SynonymId" />
+          </Key>
+          <Property Name="SynonymId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TestID" Type="int" Nullable="false" />
+          <Property Name="PrimaryCode" Type="varchar" MaxLength="20" />
+          <Property Name="Code" Type="varchar" MaxLength="20" />
+          <Property Name="AlternateName" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedUserId" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="DeletedUserId" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="TestTutorialSteps">
+          <Key>
+            <PropertyRef Name="TutorialStepID" />
+          </Key>
+          <Property Name="TutorialStepID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TestID" Type="int" Nullable="false" />
+          <Property Name="StepDescription" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="StepOrderID" Type="int" Nullable="false" />
+          <Property Name="VideoURL" Type="varchar" MaxLength="250" />
+          <Property Name="ImageURL" Type="varchar" MaxLength="250" />
+          <Property Name="DomainID" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedUserId" Type="int" Nullable="false" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="DeletedUserId" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_TestEquipment_Test">
+          <End Role="Test" Type="Model.Store.Test" Multiplicity="1" />
+          <End Role="TestSample" Type="Model.Store.TestSample" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="TestID" />
+            </Principal>
+            <Dependent Role="TestSample">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestStep_Test">
+          <End Role="Test" Type="Model.Store.Test" Multiplicity="1" />
+          <End Role="TestStep" Type="Model.Store.TestStep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="TestID" />
+            </Principal>
+            <Dependent Role="TestStep">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestTutorialSteps_Tests">
+          <End Role="Test" Type="Model.Store.Test" Multiplicity="1" />
+          <End Role="TestTutorialSteps" Type="Model.Store.TestTutorialSteps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="TestID" />
+            </Principal>
+            <Dependent Role="TestTutorialSteps">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Test_TestRequirement_FK1">
+          <End Role="Test" Type="Model.Store.Test" Multiplicity="1" />
+          <End Role="TestRequirement" Type="Model.Store.TestRequirement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="TestID" />
+            </Principal>
+            <Dependent Role="TestRequirement">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TestSample_SampleTransportCondition_FK1">
+          <End Role="TestSample" Type="Model.Store.TestSample" Multiplicity="1" />
+          <End Role="SampleTransportCondition" Type="Model.Store.SampleTransportCondition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestSample">
+              <PropertyRef Name="SampleId" />
+            </Principal>
+            <Dependent Role="SampleTransportCondition">
+              <PropertyRef Name="SampleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="LookUps" EntityType="Model.LookUp" />
+          <EntitySet Name="SampleTransportConditions" EntityType="Model.SampleTransportCondition" />
+          <EntitySet Name="Tests" EntityType="Model.Test" />
+          <EntitySet Name="TestRequirements" EntityType="Model.TestRequirement" />
+          <EntitySet Name="TestSamples" EntityType="Model.TestSample" />
+          <EntitySet Name="TestSteps" EntityType="Model.TestStep" />
+          <EntitySet Name="TestSynonyms" EntityType="Model.TestSynonym" />
+          <EntitySet Name="TestTutorialSteps" EntityType="Model.TestTutorialStep" />
+          <AssociationSet Name="TestSample_SampleTransportCondition_FK1" Association="Model.TestSample_SampleTransportCondition_FK1">
+            <End Role="TestSample" EntitySet="TestSamples" />
+            <End Role="SampleTransportCondition" EntitySet="SampleTransportConditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestEquipment_Test" Association="Model.FK_TestEquipment_Test">
+            <End Role="Test" EntitySet="Tests" />
+            <End Role="TestSample" EntitySet="TestSamples" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestStep_Test" Association="Model.FK_TestStep_Test">
+            <End Role="Test" EntitySet="Tests" />
+            <End Role="TestStep" EntitySet="TestSteps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestTutorialSteps_Tests" Association="Model.FK_TestTutorialSteps_Tests">
+            <End Role="Test" EntitySet="Tests" />
+            <End Role="TestTutorialSteps" EntitySet="TestTutorialSteps" />
+          </AssociationSet>
+          <AssociationSet Name="Test_TestRequirement_FK1" Association="Model.Test_TestRequirement_FK1">
+            <End Role="Test" EntitySet="Tests" />
+            <End Role="TestRequirement" EntitySet="TestRequirements" />
+          </AssociationSet>
+          <EntitySet Name="Equipments" EntityType="Model.Equipment" />
+        </EntityContainer>
+        <EntityType Name="LookUp">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="TableName" />
+            <PropertyRef Name="FieldName" />
+            <PropertyRef Name="ValueCode" />
+          </Key>
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="TableName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="FieldName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ValueCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="DisplayOrder" Type="Byte" />
+          <Property Name="ValueDescription" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="OwnerFieldName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="OwnerValue" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="DefaultValue" Type="Boolean" />
+          <Property Name="SystemRequired" Type="Boolean" />
+          <Property Name="Aliased" Type="Boolean" />
+          <Property Name="ValueForAction" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="RecordLastUpdated" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" p1:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="SampleTransportCondition">
+          <Key>
+            <PropertyRef Name="ConditionId" />
+          </Key>
+          <Property Name="ConditionId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="SampleId" Type="Int32" Nullable="false" />
+          <Property Name="StandardCondition" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="SpecialCondition" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="TestSample" Relationship="Model.TestSample_SampleTransportCondition_FK1" FromRole="SampleTransportCondition" ToRole="TestSample" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="TestID" />
+          </Key>
+          <Property Name="TestID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="DomainID" Type="Int32" Nullable="false" />
+          <Property Name="TestCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="TestCode" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="GuideVersion" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="HelpText" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="HelpImage" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="EstimatedDuration" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="Laboratory" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ReferenceLaboratory" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedUserId" Type="Int32" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdateUser" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedUserId" Type="Int32" />
+          <NavigationProperty Name="TestSamples" Relationship="Model.FK_TestEquipment_Test" FromRole="Test" ToRole="TestSample" />
+          <NavigationProperty Name="TestSteps" Relationship="Model.FK_TestStep_Test" FromRole="Test" ToRole="TestStep" />
+          <NavigationProperty Name="TestTutorialSteps" Relationship="Model.FK_TestTutorialSteps_Tests" FromRole="Test" ToRole="TestTutorialSteps" />
+          <NavigationProperty Name="TestRequirements" Relationship="Model.Test_TestRequirement_FK1" FromRole="Test" ToRole="TestRequirement" />
+        </EntityType>
+        <EntityType Name="TestRequirement">
+          <Key>
+            <PropertyRef Name="RequirementId" />
+          </Key>
+          <Property Name="RequirementId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TestID" Type="Int32" Nullable="false" />
+          <Property Name="RequirementType" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="StandardRequirement" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="RequirementDescription" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Test" Relationship="Model.Test_TestRequirement_FK1" FromRole="TestRequirement" ToRole="Test" />
+        </EntityType>
+        <EntityType Name="TestSample">
+          <Key>
+            <PropertyRef Name="SampleId" />
+          </Key>
+          <Property Name="SampleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TestID" Type="Int32" Nullable="false" />
+          <Property Name="EquipmentID" Type="Int32" Nullable="false" />
+          <Property Name="SmaplesRequired" Type="Int32" Nullable="false" />
+          <Property Name="SampleClassRule" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Unit" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="MinimumQuantity" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="IdealQuantity" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="MicroQuantity" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="SampleType" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="AnalysisSampleType" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="SampleTransportConditions" Relationship="Model.TestSample_SampleTransportCondition_FK1" FromRole="TestSample" ToRole="SampleTransportCondition" />
+          <NavigationProperty Name="Test" Relationship="Model.FK_TestEquipment_Test" FromRole="TestSample" ToRole="Test" />
+        </EntityType>
+        <EntityType Name="TestStep">
+          <Key>
+            <PropertyRef Name="StepID" />
+          </Key>
+          <Property Name="StepID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TestID" Type="Int32" Nullable="false" />
+          <Property Name="CompetencyLevelID" Type="Int32" Nullable="false" />
+          <Property Name="StepName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="StepOrder" Type="Int32" Nullable="false" />
+          <Property Name="StepDescription" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="VideoUrl" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedUserId" Type="Int32" Nullable="false" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedUserId" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Test" Relationship="Model.FK_TestStep_Test" FromRole="TestStep" ToRole="Test" />
+        </EntityType>
+        <EntityType Name="TestSynonym">
+          <Key>
+            <PropertyRef Name="SynonymId" />
+          </Key>
+          <Property Name="SynonymId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TestID" Type="Int32" Nullable="false" />
+          <Property Name="PrimaryCode" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Code" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="AlternateName" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedUserId" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedUserId" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TestTutorialStep">
+          <Key>
+            <PropertyRef Name="TutorialStepID" />
+          </Key>
+          <Property Name="TutorialStepID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TestID" Type="Int32" Nullable="false" />
+          <Property Name="StepDescription" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="StepOrderID" Type="Int32" Nullable="false" />
+          <Property Name="VideoURL" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="ImageURL" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="DomainID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedUserId" Type="Int32" Nullable="false" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedUserId" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Test" Relationship="Model.FK_TestTutorialSteps_Tests" FromRole="TestTutorialSteps" ToRole="Test" />
+        </EntityType>
+        <Association Name="TestSample_SampleTransportCondition_FK1">
+          <End Role="TestSample" Type="Model.TestSample" Multiplicity="1" />
+          <End Role="SampleTransportCondition" Type="Model.SampleTransportCondition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestSample">
+              <PropertyRef Name="SampleId" />
+            </Principal>
+            <Dependent Role="SampleTransportCondition">
+              <PropertyRef Name="SampleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestEquipment_Test">
+          <End Role="Test" Type="Model.Test" Multiplicity="1" />
+          <End Role="TestSample" Type="Model.TestSample" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="TestID" />
+            </Principal>
+            <Dependent Role="TestSample">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestStep_Test">
+          <End Role="Test" Type="Model.Test" Multiplicity="1" />
+          <End Role="TestStep" Type="Model.TestStep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="TestID" />
+            </Principal>
+            <Dependent Role="TestStep">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestTutorialSteps_Tests">
+          <End Role="Test" Type="Model.Test" Multiplicity="1" />
+          <End Role="TestTutorialSteps" Type="Model.TestTutorialStep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="TestID" />
+            </Principal>
+            <Dependent Role="TestTutorialSteps">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Test_TestRequirement_FK1">
+          <End Role="Test" Type="Model.Test" Multiplicity="1" />
+          <End Role="TestRequirement" Type="Model.TestRequirement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="TestID" />
+            </Principal>
+            <Dependent Role="TestRequirement">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="EquipmentID" />
+          </Key>
+          <Property Type="Int32" Name="EquipmentID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="DomainID" Nullable="false" />
+          <Property Type="String" Name="Descriptor" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsTestKit" />
+          <Property Type="String" Name="Supplier" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SupplierCode" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EquipmentClass" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SmallImage" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MediumImage" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LargeImage" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="CreatedUserId" />
+          <Property Type="DateTime" Name="DeletedDate" Precision="3" />
+          <Property Type="Int32" Name="DeletedUserId" />
+          <Property Type="Boolean" Name="IsDeleted" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="LookUps">
+            <EntityTypeMapping TypeName="Model.LookUp">
+              <MappingFragment StoreEntitySet="LookUp">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="ValueCode" ColumnName="ValueCode" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="ValueDescription" ColumnName="ValueDescription" />
+                <ScalarProperty Name="OwnerFieldName" ColumnName="OwnerFieldName" />
+                <ScalarProperty Name="OwnerValue" ColumnName="OwnerValue" />
+                <ScalarProperty Name="DefaultValue" ColumnName="DefaultValue" />
+                <ScalarProperty Name="SystemRequired" ColumnName="SystemRequired" />
+                <ScalarProperty Name="Aliased" ColumnName="Aliased" />
+                <ScalarProperty Name="ValueForAction" ColumnName="ValueForAction" />
+                <ScalarProperty Name="RecordLastUpdated" ColumnName="RecordLastUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SampleTransportConditions">
+            <EntityTypeMapping TypeName="Model.SampleTransportCondition">
+              <MappingFragment StoreEntitySet="SampleTransportCondition">
+                <ScalarProperty Name="ConditionId" ColumnName="ConditionId" />
+                <ScalarProperty Name="SampleId" ColumnName="SampleId" />
+                <ScalarProperty Name="StandardCondition" ColumnName="StandardCondition" />
+                <ScalarProperty Name="SpecialCondition" ColumnName="SpecialCondition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tests">
+            <EntityTypeMapping TypeName="Model.Test">
+              <MappingFragment StoreEntitySet="Test">
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
+                <ScalarProperty Name="DomainID" ColumnName="DomainID" />
+                <ScalarProperty Name="TestCategoryID" ColumnName="TestCategoryID" />
+                <ScalarProperty Name="TestCode" ColumnName="TestCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="GuideVersion" ColumnName="GuideVersion" />
+                <ScalarProperty Name="HelpText" ColumnName="HelpText" />
+                <ScalarProperty Name="HelpImage" ColumnName="HelpImage" />
+                <ScalarProperty Name="EstimatedDuration" ColumnName="EstimatedDuration" />
+                <ScalarProperty Name="Laboratory" ColumnName="Laboratory" />
+                <ScalarProperty Name="ReferenceLaboratory" ColumnName="ReferenceLaboratory" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedUserId" ColumnName="CreatedUserId" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="LastUpdateUser" ColumnName="LastUpdateUser" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedUserId" ColumnName="DeletedUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestRequirements">
+            <EntityTypeMapping TypeName="Model.TestRequirement">
+              <MappingFragment StoreEntitySet="TestRequirement">
+                <ScalarProperty Name="RequirementId" ColumnName="RequirementId" />
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
+                <ScalarProperty Name="RequirementType" ColumnName="RequirementType" />
+                <ScalarProperty Name="StandardRequirement" ColumnName="StandardRequirement" />
+                <ScalarProperty Name="RequirementDescription" ColumnName="RequirementDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestSamples">
+            <EntityTypeMapping TypeName="Model.TestSample">
+              <MappingFragment StoreEntitySet="TestSample">
+                <ScalarProperty Name="SampleId" ColumnName="SampleId" />
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+                <ScalarProperty Name="SmaplesRequired" ColumnName="SmaplesRequired" />
+                <ScalarProperty Name="SampleClassRule" ColumnName="SampleClassRule" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="MinimumQuantity" ColumnName="MinimumQuantity" />
+                <ScalarProperty Name="IdealQuantity" ColumnName="IdealQuantity" />
+                <ScalarProperty Name="MicroQuantity" ColumnName="MicroQuantity" />
+                <ScalarProperty Name="SampleType" ColumnName="SampleType" />
+                <ScalarProperty Name="AnalysisSampleType" ColumnName="AnalysisSampleType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestSteps">
+            <EntityTypeMapping TypeName="Model.TestStep">
+              <MappingFragment StoreEntitySet="TestStep">
+                <ScalarProperty Name="StepID" ColumnName="StepID" />
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
+                <ScalarProperty Name="CompetencyLevelID" ColumnName="CompetencyLevelID" />
+                <ScalarProperty Name="StepName" ColumnName="StepName" />
+                <ScalarProperty Name="StepOrder" ColumnName="StepOrder" />
+                <ScalarProperty Name="StepDescription" ColumnName="StepDescription" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedUserId" ColumnName="CreatedUserId" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedUserId" ColumnName="DeletedUserId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestSynonyms">
+            <EntityTypeMapping TypeName="Model.TestSynonym">
+              <MappingFragment StoreEntitySet="TestSynonyms">
+                <ScalarProperty Name="SynonymId" ColumnName="SynonymId" />
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
+                <ScalarProperty Name="PrimaryCode" ColumnName="PrimaryCode" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="AlternateName" ColumnName="AlternateName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedUserId" ColumnName="CreatedUserId" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedUserId" ColumnName="DeletedUserId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestTutorialSteps">
+            <EntityTypeMapping TypeName="Model.TestTutorialStep">
+              <MappingFragment StoreEntitySet="TestTutorialSteps">
+                <ScalarProperty Name="TutorialStepID" ColumnName="TutorialStepID" />
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
+                <ScalarProperty Name="StepDescription" ColumnName="StepDescription" />
+                <ScalarProperty Name="StepOrderID" ColumnName="StepOrderID" />
+                <ScalarProperty Name="VideoURL" ColumnName="VideoURL" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="DomainID" ColumnName="DomainID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedUserId" ColumnName="CreatedUserId" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="DeletedUserId" ColumnName="DeletedUserId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipments">
+            <EntityTypeMapping TypeName="Model.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedUserId" ColumnName="DeletedUserId" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="CreatedUserId" ColumnName="CreatedUserId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LargeImage" ColumnName="LargeImage" />
+                <ScalarProperty Name="MediumImage" ColumnName="MediumImage" />
+                <ScalarProperty Name="SmallImage" ColumnName="SmallImage" />
+                <ScalarProperty Name="EquipmentClass" ColumnName="EquipmentClass" />
+                <ScalarProperty Name="SupplierCode" ColumnName="SupplierCode" />
+                <ScalarProperty Name="Supplier" ColumnName="Supplier" />
+                <ScalarProperty Name="IsTestKit" ColumnName="IsTestKit" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Descriptor" ColumnName="Descriptor" />
+                <ScalarProperty Name="DomainID" ColumnName="DomainID" />
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

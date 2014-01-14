@@ -1,0 +1,181 @@
+﻿<div id="testwizard" class="swMain" style="width:100%;height:100%;">
+    <ul>
+        <li> 
+            <a href="#step-1" style="width:180px !important;">
+                <span class="stepDesc">Step 1<br /><small>Test Details</small></span>
+           </a>
+        </li>
+        <li>
+            <a href="#step-2" style="width:180px !important;">
+                <span class="stepDesc">Step 2<br /><small>Test Sample Details</small></span>
+           </a>
+        </li>
+        <li>
+            <a href="#step-3" style="width:180px !important;">
+                <span class="stepDesc">Step 3<br /><small>Test Requirement Details</small></span>
+           </a>
+        </li>
+        <li>
+            <a href="#step-4" style="width:180px !important;">
+                <span class="stepDesc">Step 4<br /><small>Test Step Details</small></span>
+           </a>
+        </li>
+        <li>
+            <a href="#step-5" style="width:180px !important;">
+                <span class="stepDesc">Step 5<br /><small>Test Tutorial Steps</small></span>
+           </a>
+        </li>
+        <li>
+            <a href="#step-6" style="width:180px !important">
+                <span class="stepDesc">Step 6<br /><small>Summary</small></span>
+           </a>
+        </li>
+    </ul>
+    <div id="step-1" style="width:100%;height:580px;">
+           <table cellpadding="5" cellspacing="5" style="margin: 0px;width:100%;">
+                <tr>
+                <td style="width:20%" class="admin_page_label">Test Code&nbsp;<font class="required" style="font-weight:bold;">*</font> :</td>
+                <td style="width:30%"><input id="txt_NewTestCode" type="text" class="form-control" style="width:250px;" tabindex="1"></td>
+                <td style="vertical-align:top;" class="admin_page_label">Guide Version :</td>
+                <td style="vertical-align:top;"><input id="txt_NewTestGuideVersion" type="text" class="bootstrapInputStyle forcecorner" style="width:100px;" tabindex="9" /></td>
+            </tr>
+            <tr>
+                <td class="admin_page_label">Primary Test Name&nbsp;<font class="required" style="font-weight:bold;">*</font> :</td>
+                <td><input id="txt_NewTestPrimaryName" type="text" class="form-control" style="width:250px;" tabindex="2" /></td>
+                <td style="width:20%" class="admin_page_label">Nominal Collection Time :</td>
+                <td style="width:30%">
+                    <table style="width:100%">
+                        <tr>
+                            <td style="width:70px;"><input id="txt_NewTestEstimatedCollectionTime" type="text" class="bootstrapInputStyle forcecorner" style="width:100px;" tabindex="6" /></td>
+                            <td>&nbsp;<span class="smallfont">Minute (s)</span></td>
+                        </tr>
+                    </table>
+                </td>
+                
+            </tr>
+            <tr>
+                <td class="admin_page_label">Test Category&nbsp;<font class="required" style="font-weight:bold;">*</font> :</td>
+                <td><select id="select_NewTestCategory"  class="select-form-control" style="width:250px;" title='Please Select' tabindex="3"></select></td>
+                <td class="admin_page_label">Laboratory :</td>
+                <td ><select id="select_NewTestLaboratory" class="select-form-control" style="width:250px;" title='Please Select' tabindex="7"></select></td>
+            </tr>
+            <tr>
+                <td class="admin_page_label">Description :</td>
+                <td><textarea  id="txt_NewTestDescription" type="text" class="form-control" rows="2" style="width:270px;" tabindex="5" /></td>
+                <td class="admin_page_label">Reference Laboratory Name :</td>
+                <td style="vertical-align:top;" rowspan="2"><textarea  id="txt_NewTestRefLabName" type="text" class="form-control" rows="2" style="width:290px;" tabindex="8" /></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <span class="admin_page_label">Alternate Name</span>
+                    <div class="ui-accordion-header ui-state-default forcecorner" style="width:760px;height:280px;padding:3px;margin-top:10px;">
+                        <table id="newTestAltNameGrid"></table> 
+                    </div>
+                </td>
+            </tr>                
+            <tr>
+                <td colspan="4">
+                    <span class="note"><font class="required" style="font-weight:bold;">*</font>&nbsp;Denotes Required Field.</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+     <div id="step-2" style="width:100%;height:580px;">
+        <br />
+        @{ Html.RenderPartial("~/Areas/SampleApplication.WebApp.PlugIn.Administration/Views/Test/SampleDetailsObject.cshtml"); }
+    </div>
+    <div id="step-3" style="width:100%;height:580px;">
+        <br />
+        @{ Html.RenderPartial("~/Areas/SampleApplication.WebApp.PlugIn.Administration/Views/Test/SampleRequirementsObject.cshtml"); }
+    </div>
+    <div id="step-4" style="width:100%;height:580px;">
+        <br />
+        <span id="toolbarTestStepDetails" style="padding: 10px 4px;" class="ui-widget-header forcecorner" style="display:none;">
+            <button id="btn_AddNewTestStepDetails">Add Test Step Details</button>
+            <button id="btn_EditTestStepDetails">Edit Test Step Details</button>
+            <button id="btn_DeleteTestStepDetails">Delete Test Step Details</button>
+        </span><br />
+        <br />
+        <table id="newTestStepsGrid"></table>
+    </div>
+    <div id="step-5" style="width:100%;height:580px;">
+        <br />
+        <span id="toolbarTestTutorialStepDetails" style="padding: 10px 4px;" class="ui-widget-header forcecorner" style="display:none;">
+            <button id="btn_AddNewTestTutorialStepDetails">Add Test Step Details</button>
+            <button id="btn_EditTestTutorialStepDetails">Edit Test Step Details</button>
+            <button id="btn_DeleteTestTutorialStepDetails">Delete Test Step Details</button>
+        </span><br /> 
+        <br />
+        <table id="newTestTutorialStepsGrid"></table>
+    </div>
+    <div id="step-6" style="width:100%;height:580px;">
+
+         <div id="newTestSummaryTab" class="tabs">
+	        <ul id="summaryTab" style="list-style: none;">
+		        <li><a href="#tabs-1">Test Details</a></li>
+		        <li><a href="#tabs-2">Sample Details</a></li>
+		        <li><a href="#tabs-3">Requirement Details</a></li>
+                <li><a href="#tabs-4">Step Details</a></li>
+                <li><a href="#tabs-5">Tutorial Step Details</a></li>
+	        </ul>
+	        <div id="tabs-1">
+                <table cellpadding="5" cellspacing="5" style="margin: 0px;width:100%;">
+                    <tr>
+                        <td style="width:20%"><b>Test Code :</b></td>
+                        <td style="width:80%"><span id="summaryTestCode" style="width:100%;"></span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Test Name :</b></td>
+                        <td><span id="summaryTestName" style="width:100%;"></span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Test Category :</b></td>
+                        <td><span id="summaryTestCategory" style="width:100%;"></span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Common Test Name :</b></td>
+                        <td><span id="summaryCommonTestName" style="width:100%;"></span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Description :</b></td>
+                        <td><span id="summaryDescription" style="width:100%;"></span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Estimated Collection Time :</b></td>
+                        <td><span id="summaryEstimatedCollectionTime"></span>&nbsp;Minutes</td>
+                    </tr>
+                    <tr>
+                        <td><b>Laboratory :</b></td>
+                        <td><span id="summaryLaboratory" style="width:100%;"></span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Reference Laboratory Name :</b></td>
+                        <td><span id="summaryRefLaboratory" style="width:100%;"></span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Number of Sample :</b></td>
+                        <td><span id="summaryNumberSamples"></span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Guide Version :</b></td>
+                        <td><span id="summaryGuideVersion"></span></td>
+                    </tr>
+                </table>
+	        </div>
+	        <div id="tabs-2">
+		        @{ Html.RenderPartial("~/Areas/SampleApplication.WebApp.PlugIn.Administration/Views/Test/SampleDetailsSummaryObject.cshtml"); }
+	        </div>
+	        <div id="tabs-3">
+		        @{ Html.RenderPartial("~/Areas/SampleApplication.WebApp.PlugIn.Administration/Views/Test/SampleRequirementsSummaryObject.cshtml"); }
+	        </div>
+            <div id="tabs-4">
+		        <table id="newTestStepsSummaryGrid"></table>
+	        </div>
+            <div id="tabs-5">
+		        <table id="newTestTutorialStepsSummaryGrid"></table>
+	        </div>
+        </div>
+       
+    </div>
+   
+</div>

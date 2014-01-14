@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <meta name="viewport" content="width=device-width" />
+        <link href="@ViewBag.AdministrationCssPath" rel="stylesheet" type="text/css" />
+        <script src="@ViewBag.TestJsPath" type="text/javascript"></script>
+        <script type="text/javascript">
+
+             $(document).ready(function () {
+                 
+                 Initialize();
+
+             });
+
+        </script>
+	</head>
+    <body>
+        @{ Html.RenderPartial("~/Views/Shared/PageSectionTitle.cshtml", "Test List"); }
+        <br />
+        <div id="loading_test" style="position: absolute; left: 50%; top: 50%; margin-left: -100px; margin-top: -50px; text-align: center; z-index: 99999;"></div>
+        <span id="toolbar" style="padding: 10px 4px;" class="ui-widget-header forcecorner">
+            <input id="txt_TestSearchList" type="text" class="ui-widget ui-widget-content forcecorner" style="width:220px;">
+	        <button id="btn_SearchTest">Search</button>&nbsp;&nbsp;&nbsp;&nbsp;
+	        <button id="btn_AddNewTest">Add</button>
+            <button id="btn_EditTest">Edit</button>
+            <button id="btn_DeleteTest">Delete</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button id="btn_UploadTest">Upload</button>
+            <button id="btn_ViewTest">View</button>
+        </span>
+        <br /><br />
+        <div id="buttonGroup" style="width:100%;overflow-y:auto;white-space: nowrap;">
+            <button id="numeric">0-9</button><button id="a">A</button><button id="b">B</button><button id="c">C</button><button id="d">D</button><button id="e">E</button><button id="f">F</button><button id="g">G</button><button id="h">H</button><button id="i">I</button><button id="j">J</button><button id="k">K</button><button id="l">L</button><button id="m">M</button><button id="n">N</button><button id="o">O</button><button id="p">P</button><button id="q">Q</button><button id="r">R</button><button id="s">S</button><button id="t">T</button><button id="u">Y</button><button id="v">V</button><button id="w">W</button><button id="x">X</button><button id="y">Y</button><button id="z">Z</button>
+        </div>
+        <br />
+        <table id="testgrid"></table>		
+    </body>
+</html>

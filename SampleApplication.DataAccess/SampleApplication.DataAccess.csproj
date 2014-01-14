@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CBD3481B-E279-49CC-9E06-B31C0B893F18}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SampleApplication.DataAccess</RootNamespace>
+    <AssemblyName>SampleApplication.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class\Equipment.cs" />
+    <Compile Include="Class\Test.cs" />
+    <Compile Include="Class\LookUp.cs" />
+    <Compile Include="Interface\IEquipmentRepository.cs" />
+    <Compile Include="Interface\ITestRepository.cs" />
+    <Compile Include="Interface\ILookUpRepository.cs" />
+    <Compile Include="Interface\IRepository.cs" />
+    <Compile Include="Models\Equipment.cs">
+      <DependentUpon>MobileProfile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LookUp.cs">
+      <DependentUpon>MobileProfile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MobileProfile.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MobileProfile.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MobileProfile.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MobileProfile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MobileProfile.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MobileProfile.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SampleTransportCondition.cs">
+      <DependentUpon>MobileProfile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Test.cs">
+      <DependentUpon>MobileProfile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TestRequirement.cs">
+      <DependentUpon>MobileProfile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TestSample.cs">
+      <DependentUpon>MobileProfile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TestStep.cs">
+      <DependentUpon>MobileProfile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TestSynonym.cs">
+      <DependentUpon>MobileProfile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TestTutorialStep.cs">
+      <DependentUpon>MobileProfile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="Models\MobileProfile.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MobileProfile.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\MobileProfile.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MobileProfile.edmx</DependentUpon>
+      <LastGenOutput>MobileProfile.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Models\MobileProfile.edmx.diagram">
+      <DependentUpon>MobileProfile.edmx</DependentUpon>
+    </None>
+    <None Include="Models\MobileProfile.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MobileProfile.edmx</DependentUpon>
+      <LastGenOutput>MobileProfile.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SampleApplication.Models\SampleApplication.Models.csproj">
+      <Project>{15a726c7-5b6a-453e-bd12-8b04ebbaa9b3}</Project>
+      <Name>SampleApplication.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

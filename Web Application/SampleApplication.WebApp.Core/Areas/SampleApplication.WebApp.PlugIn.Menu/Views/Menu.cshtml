@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <meta name="viewport" content="width=device-width" />
+        <link id="menuCSS" href="@ViewBag.MenuCssPath" rel="stylesheet" type="text/css" />
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+
+                $(".menu").accordion({ collapsible: true, active: 'none' });
+
+                $("#cssmenu .ui-icon").remove();
+
+                 //SetFirstItemAsSelected();
+
+                 //function SetFirstItemAsSelected() {
+                 //    SetIcon($("#mainmenu li:first"), "selectedMenu");
+                 //};
+
+                 function SetIcon(object, cssname) {
+                     
+                     object.find("span:first").addClass(cssname);
+                     $("." + cssname).css("background-image", "url('" + hostUrl + "Content/themes/" + themeName + "/images/ui-icons_ffffff_256x240.png')");
+                     
+                     var width = object.width() - 26;
+                     $("." + cssname).css("margin-left", width + 'px');
+
+                 };
+
+
+                 $(".menu li").click(function (event) {
+
+                     var hasChildren = $(this).find('#hasChildren').val();
+                     var url = $(this).find('#url').val();
+                     var level = $(this).find('#level').val();
+                     var elementId = $(this).attr("id");
+                     
+                     if (level == "1") {
+                     
+                         $(".withsubmenu").css("background-image", "none");
+                         $(".withsubmenu").removeClass("withsubmenu");
+                     }
+
+                     $(".selectedMenu").css("background-image", "none");
+                     $(".selectedMenu").removeClass("selectedMenu");
+                     
+                     if (hasChildren == 'true') {
+
+                         //$('.withsubmenu').each(function (i, obj) {
+                         //    alert(obj[i].attr("class"));
+                         //});
+                          
+                         $('.withsubmenu').each(function () {
+                             
+                             var _level = $(this).parent().find('#level').val();
+                             if (_level == level) {
+                                 $(this).css("background-image", "none");
+                                 $(this).removeClass("withsubmenu");
+                             }
+                         });
+
+                         SetIcon($("#" + elementId), "withsubmenu");
+
+                     }
+                     else {
+
+                         SetIcon($("#" + elementId), "selectedMenu");
+                         LoadPage(url);
+                     }
+
+                     event.stopPropagation();
+
+                 });
+
+                 function LoadPage(url) {
+                     $.ajax({
+                         data: {}, url: url, cache: false,
+                         success: function (responseText, textStatus, XMLHttpRequest) {
+                             $("#rightContent").html(responseText);
+                         }
+                     });
+                 };
+             
+             });
+             
+        </script>
+	</head>
+    <body>
+        <div id="cssmenu">
+               @Html.Raw(ViewBag.DisplayMenu)
+        </div>
+    </body>
+</html>

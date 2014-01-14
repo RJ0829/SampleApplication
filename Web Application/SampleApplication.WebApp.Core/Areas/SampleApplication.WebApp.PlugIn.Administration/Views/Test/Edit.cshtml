@@ -1,0 +1,83 @@
+﻿<div id="editTestTab" class="tabs">
+	<ul>
+		<li><a href="#tabs-1">Test Details</a></li>
+		<li><a href="#tabs-2">Sample Details</a></li>
+		<li><a href="#tabs-3">Requirement Details</a></li>
+        <li><a href="#tabs-4">Step Details</a></li>
+        <li><a href="#tabs-5">Tutorial Step Details</a></li>
+	</ul>
+	<div id="tabs-1" style="width:100%;height:580px;">
+        <table cellpadding="5" cellspacing="5" style="margin: 0px;width:100%;">
+            <tr>
+                <td style="width:20%" class="admin_page_label">Test Code&nbsp;<font class="required" style="font-weight:bold;">*</font> :</td>
+                <td style="width:30%"><input id="txt_EditTestCode" type="text" class="form-control" style="width:250px;" tabindex="1"></td>
+                <td style="width:20%;vertical-align:top;" class="admin_page_label">Guide Version :</td>
+                <td style="width:30%;vertical-align:top;"><input id="txt_EditTestGuideVersion" type="text" class="bootstrapInputStyle forcecorner" style="width:100px;" tabindex="5" /></td>
+             </tr>
+            <tr>
+                <td class="admin_page_label">Primary Test Name&nbsp;<font class="required" style="font-weight:bold;">*</font> :</td>
+                <td><input id="txt_EditTestPrimaryName" type="text" class="form-control" style="width:250px;" tabindex="2" /></td>
+                <td class="admin_page_label">Nominal Collection Time :</td>
+                <td>
+                    <table style="width:100%">
+                        <tr>
+                            <td style="width:70px;"><input id="txt_EditTestEstimatedCollectionTime" type="text" class="bootstrapInputStyle forcecorner" style="width:100px;" tabindex="7" /></td>
+                            <td>&nbsp;<span class="smallfont">Minute (s)</span></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="admin_page_label">Test Category&nbsp;<font class="required" style="font-weight:bold;">*</font> :</td>
+                <td><select id="select_EditTestCategory"  class="select-form-control" style="width:250px;" title='Please Select' tabindex="3"></select></td>
+                <td class="admin_page_label">Laboratory :</td>
+                <td ><select id="select_EditTestLaboratory" class="select-form-control" style="width:250px;" title='Please Select' tabindex="8"></select></td>
+                
+            </tr>
+            <tr>
+                <td class="admin_page_label">Description :</td>
+                <td><textarea  id="txt_EditTestDescription" type="text" class="form-control" rows="2" style="width:270px;" tabindex="6" /></td>
+                <td class="admin_page_label">Reference Laboratory Name :</td>
+                <td style="vertical-align:top;" rowspan="2"><textarea  id="txt_EditTestRefLabName" type="text" class="form-control" rows="2" style="width:290px;" tabindex="9" /></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <span class="admin_page_label">Alternate Name</span>
+                    <div class="ui-accordion-header ui-state-default forcecorner" style="width:760px;height:280px;padding:3px;margin-top:10px;">
+                        <table id="editTestAltNameGrid"></table> 
+                    </div>
+                </td>
+            </tr>                
+            <tr>
+                <td colspan="4">
+                    <span class="note"><font class="required" style="font-weight:bold;">*</font>&nbsp;Denotes Required Field.</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+	<div id="tabs-2" style="width:100%;height:580px;">
+       @{ Html.RenderPartial("~/Areas/SampleApplication.WebApp.PlugIn.Administration/Views/Test/SampleDetailsObject.cshtml"); }
+	</div>
+	<div id="tabs-3" style="width:100%;height:580px;">
+        @{ Html.RenderPartial("~/Areas/SampleApplication.WebApp.PlugIn.Administration/Views/Test/SampleRequirementsObject.cshtml"); }
+	</div>
+    <div id="tabs-4" style="width:100%;height:580px;">
+         <span id="toolbarTestStepDetails" style="padding: 10px 4px;" class="ui-widget-header forcecorner" style="display:none;">
+            <button id="btn_AddNewTestStepDetails_Edit">Add Test Step Details</button>
+            <button id="btn_EditTestStepDetails_Edit">Edit Test Step Details</button>
+            <button id="btn_DeleteTestStepDetails_Edit">Delete Test Step Details</button>
+        </span>
+        <br /><br />
+		<table id="editTestStepsGrid"></table>
+	</div>
+    <div id="tabs-5" style="width:100%;height:580px;">
+        <span id="toolbarTestTutorialStepDetails" style="padding: 10px 4px;" class="ui-widget-header forcecorner" style="display:none;">
+            <button id="btn_AddNewTestTutorialStepDetails_Edit">Add Test Step Details</button>
+            <button id="btn_EditTestTutorialStepDetails_Edit">Edit Test Step Details</button>
+            <button id="btn_DeleteTestTutorialStepDetails_Edit">Delete Test Step Details</button>
+        </span>
+        <br /><br />
+		<table id="editTestTutorialStepsGrid"></table>
+	</div>
+</div>
+<div style="padding-left: 3px;"><Button id="btn_editSubmitTest">Submit</Button>&nbsp;<Button id="btn_editCancelEdittTest">Cancel</Button></div> 

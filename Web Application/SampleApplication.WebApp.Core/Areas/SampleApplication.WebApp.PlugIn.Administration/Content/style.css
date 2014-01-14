@@ -1,0 +1,56 @@
+﻿.subtitle
+{
+    border:1px solid #D3D1D1;
+    width: 100% !important;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 7px 0 7px 7px;
+}
+
+.admin_page_label
+{
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0 0 0 5px;
+    vertical-align: middle;
+}
+
+.smallItalicfont
+{
+    font-size: x-small;
+    font-style: italic;
+}
+
+.smallfont
+{
+    font-size: x-small;
+}
+
+.charSearchButton
+{
+    padding-left: 1px;
+}
+
+.removeRightMargin
+{
+    margin-right: 0px !important;
+}
+
+.testViewDataLabelContainer
+{
+    background-color: #C2EBED !important;
+    border-top: 2px solid #9cd4e1 !important;
+    border-left: 2px solid #9cd4e1 !important;
+    border-right: 2px solid #9cd4e1 !important;
+    
+}
+
+.testViewDataValueContainer
+{
+    background-color: white !important;
+    border-top: 2px solid #9cd4e1 !important;
+    border-left: 2px solid #9cd4e1 !important;
+    border-right: 2px solid #9cd4e1 !important;
+}
+
+

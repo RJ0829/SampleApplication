@@ -1,0 +1,61 @@
+﻿ <div id="sampleDetailTabs" class="tabs">
+	<ul>
+		<li><a href="#tabs-1">Sample Details</a></li>
+		<li><a href="#tabs-2">Quantity</a></li>
+		<li><a href="#tabs-3">Conditions</a></li>
+	</ul>
+	<div id="tabs-1">
+		<table cellpadding="5" cellspacing="5" style="margin: 0px;width:100%;">
+            <tr>
+                <td style="width:20%" class="admin_page_label">Equipment&nbsp;<font class="required" style="font-weight:bold;">*</font> :</td>
+                <td style="width:80%"><select id="select_New_TestSampleDetails_Equipment" class="select-form-control" style="width:250px;" title='Please Select' tabindex="1"></select></td>
+            </tr>
+            <tr>
+                <td class="admin_page_label">Sample Application&nbsp;<font class="required" style="font-weight:bold;">*</font> :</td>
+                <td><select id="select_New_TestSampleDetails_Application" class="select-form-control" style="width:250px;" title='Please Select' tabindex="2"></select></td>
+            </tr>
+            <tr>
+                <td class="admin_page_label">Sample Type :</td>
+                <td ><select id="select_New_TestSampleDetails_SampleType" class="select-form-control" style="width:250px;" title='Please Select' tabindex="3"></select></td>
+            </tr>
+            <tr>
+                <td class="admin_page_label">Analysis Sample Type :</td>
+                <td><select id="select_New_TestSampleDetails_AnalysisSampleType" class="select-form-control" style="width:250px;" title='Please Select' tabindex="4"></select></td>     
+            </tr>
+            <tr>
+                <td class="admin_page_label">Number of Samples :</td>
+                <td><input id="txt_New_TestSampleDetails_NumberofSamples" type="text" class="bootstrapInputStyle forcecorner" style="width:100px;" tabindex="5" /></td>
+           </tr>
+        </table>
+	</div>
+	<div id="tabs-2">
+		<table cellpadding="5" cellspacing="5" style="margin: 0px;width:100%;">
+            <tr>
+                <td class="admin_page_label">Unit :</td>
+                <td><select id="select_New_TestSampleDetails_Unit" class="select-form-control" style="width:250px;" title='Please Select' tabindex="1"></select></td>
+            </tr>
+            <tr>
+                <td style="width:20%" class="admin_page_label">Minimum Quantity :</td>
+                <td style="width:80%"><input id="txt_New_TestSampleDetails_MinQty" type="text" class="bootstrapInputStyle forcecorner" style="width:100px;" tabindex="2" />&nbsp;<span id="span_minQtyUnit"></span></td>
+            </tr>
+            <tr>
+                <td class="admin_page_label">Ideal Quantity :</td>
+                <td><input id="txt_New_TestSampleDetails_IdealQty" type="text" class="bootstrapInputStyle forcecorner" style="width:100px;" tabindex="3" />&nbsp;<span id="span_IdealQtyUnit"></span></td>
+           </tr>
+            <tr>
+                <td class="admin_page_label">Micro Quantity :</td>
+                <td><input id="txt_New_TestSampleDetails_MicroQty" type="text" class="bootstrapInputStyle forcecorner" style="width:100px;" tabindex="4" />&nbsp;<span id="span_MicroQtyUnit"></span></td>
+            </tr>
+        </table>
+	</div>
+	<div id="tabs-3">
+		<table id="newTestSampleDetailConditionsGrid"></table>	
+	</div>
+</div>
+<br />
+<div style="padding-left:3px;">
+<button id="btn_SaveTestSampleDetailsData" type="button" >Submit</button>
+<button id="btn_CancelTestSampleDetailsData" type="button">Cancel</button>
+<br />
+<span class="note"><font class="required" style="font-weight:bold;">*</font>&nbsp;Denotes Required Field.</span>
+</div>

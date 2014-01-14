@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bccdfe166ba84d0db1d5b96164e80df6" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.LookUp" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SampleTransportCondition" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Test" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TestRequirement" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TestSample" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TestStep" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TestSynonym" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TestTutorialStep" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <AssociationConnector Association="Model.TestSample_SampleTransportCondition_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TestEquipment_Test" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TestStep_Test" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TestTutorialSteps_Tests" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Test_TestRequirement_FK1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.Equipment" Width="1.5" PointX="1.4782821375309871" PointY="10.330954809827244" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

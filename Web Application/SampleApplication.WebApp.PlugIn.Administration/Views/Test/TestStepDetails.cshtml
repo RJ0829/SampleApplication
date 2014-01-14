@@ -1,0 +1,46 @@
+﻿<table cellpadding="5" cellspacing="5" style="margin: 0px;width:100%;">
+    <tr>
+        <td style="width:35%" class="admin_page_label">Step Name&nbsp;<font class="required" style="font-weight:bold;">*</font> :</td>
+        <td style="width:65%"><input id="txt_TestStepsDetail_StepName" type="text" class="form-control" style="width:250px;" tabindex="1" /></td>
+    </tr>
+    <tr>
+        <td class="admin_page_label">Step Order :</td>
+        <td><input id="txt_TestStepsDetail_StepOrder" type="text" class="bootstrapInputStyle forcecorner" style="width:100px;" tabindex="2" /></td>
+    </tr>
+    <tr>
+        <td class="admin_page_label">Competency&nbsp;<font class="required" style="font-weight:bold;">*</font> :</td>
+        <td><select id="select_TestStepDetails_Competency" class="select-form-control" style="width:290px;" title='Please Select' tabindex="3"></select></td>
+    </tr>
+    <tr>
+        <td class="admin_page_label">Description :</td>
+        <td ><textarea  id="txt_TestStepDetails_Description" type="text" class="form-control" rows="5" style="width:290px;" tabindex="4" /></td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <form enctype="multipart/form-data">
+                <table style="width:100%;padding:0;margin:0;">
+                    <tr>
+                        <td style="width:35%" class="admin_page_label">Image :</td>
+                        <td style="width:65%">
+                            <input id="txt_TestStepsDetail_Image" name="txt_TestStepsDetail_Image" type="file" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="admin_page_label">Video :</td>
+                        <td >
+                            <input id="txt_TestStepsDetail_Video" name="txt_TestStepsDetail_Video" type="file" class="form-control">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </td>
+    </tr>
+    
+</table>
+<br />
+<div style="padding-left:3px;">
+<button id="btn_SaveTestStepDetailsData" type="button" >Submit</button>
+<button id="btn_CancelTestStepDetailsData" type="button">Cancel</button>
+<br />
+<span class="note"><font class="required" style="font-weight:bold;">*</font>&nbsp;Denotes Required Field.</span>
+</div>

@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <meta name="viewport" content="width=device-width" />
+        <link href="@ViewBag.AdministrationCssPath" rel="stylesheet" type="text/css" />
+        <script src="@ViewBag.LookUpJsPath" type="text/javascript"></script>
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                
+                  Initialize();
+                
+             });
+
+        </script>
+	</head>
+    <body>
+        @{ Html.RenderPartial("~/Views/Shared/PageSectionTitle.cshtml", "Reference Look Up"); }
+        <br />
+        <div id="loading_lookup" style="position: absolute; left: 50%; top: 50%; margin-left: -100px; margin-top: -50px; text-align: center; z-index: 99999;"></div>
+        <table style="width:100%">
+            <tr>
+                <td style="width:10%" class="admin_page_label">Table Name</td>
+                <td style="width:90%;padding-top:10px;">
+                   <select id="select_TableName" class="form-control" style="width:200px;" title='All'></select>
+                </td>
+            </tr>
+            <tr>
+                <td class="admin_page_label">Field Name</td>
+                <td style="padding-top:10px;">
+                    <select id="select_FieldName" class="form-control" style="width:200px;" title='All'></select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left:5px;padding-top:10px;">
+                    <button id="btn_AddNewLookUp" type="button">Add New Record</button>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table id="lookupgrid"></table>		
+    </body>
+</html>
+
